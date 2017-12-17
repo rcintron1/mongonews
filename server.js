@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
-var morgan = require('morgan'); /*HTTP request logger middleware for node.js*/
+var logger = require("morgan");; /*HTTP request logger middleware for node.js*/
 var port = process.env.PORT || 8080;
 var app = express();
 
@@ -13,6 +13,8 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+app.use(logger("dev"));
 
 // Import routes and give the server access to them.
 require("./routes/api-routes.js")(app);
