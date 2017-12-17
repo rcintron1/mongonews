@@ -8,8 +8,10 @@
     <li>exress-handlebars</li>
     <li>mongoos</li>
     <li>body-parser</li>
-    <li>cherio</li>
+    <li>cheerio</li>
     <li>request</li>
+    <li>dotenv</li>
+    <li>morgan</li>
 </ul>
 
 <p>
@@ -17,4 +19,5 @@
     this project will reside in.
 </p>
 <p>A working copy of this repository will be hosted in the following Heroku Link:</p>
+
 <link>
