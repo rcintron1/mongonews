@@ -1,13 +1,23 @@
-var mongoose = require ('mongoose');
-var scraper = require('./scraper');
-var db = require("./models");
+var mongoose = require ("mongoose");
+var scraper = require("./scraper");
 
 mongoose.Promise = Promise;
-try{
-    mongoose.connect('mongodb://localhost/mongonews');
+mongoose.connect('mongodb://localhost/mongonews',{useMongoClient: true});
 
-}catch(err){
-    console.log("Mongoose connect error",err);
-    throw "Couldn't connect to DB"
-}
+var db = require("../models");
+scraper((articles)=>{
+    // console.log(data);
+    articles.map((article)=>{
+        db.Article
+            .create(article)
+            .then((dbArticle)=>{
+                console.log(dbArticle);
+                // return("Scrape Complete");
+            })
+            .catch((err)=>{
+                // return(err);
+            })
 
+    });
+
+});
