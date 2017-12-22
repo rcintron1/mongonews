@@ -1,0 +1,14 @@
+.jumbotron{
+    padding-top:0px;
+    margin-bottom:50px;
+    padding-bottom:0px;
+
+}
+.mainbody{
+    overflow: auto
+}
+.label {
+    font-weight: bold;
+    background-color: black;
+    margin-right: 25px;
+  }

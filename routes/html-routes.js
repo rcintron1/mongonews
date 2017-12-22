@@ -1,9 +1,15 @@
 
 var controller = require("../controller/controller.js");
 
-var controller = {
+module.exports = (app)=>{
     app.get("/", function (req, res) {
-        res.render("index");
+        controller.getdata((data)=>{
+            console.log(data);
+            res.render("index",{
+                articles:data
+            });
+        });
+        
     });
     app.get("/articles", function (req, res) {
         /*list articles and related notes*/
@@ -11,3 +17,4 @@ var controller = {
     });
 
 }
+

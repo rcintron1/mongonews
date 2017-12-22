@@ -1,0 +1,14 @@
+<div>
+<ul>
+  {{#each articles}}
+  <li>
+    <p><span class="label">Headline:</span>{{this.headline}}</p>
+    <p><span class="label">Sumamry:</span>{{this.summary}}</p>
+    <button data-planid="{{this._id}}" class="delarticle">Delete Article!</button>
+    </p>
+  </li>
+  {{/each}}
+</ul>
+</div>
+
+{{!-- _id headline summary --}}
