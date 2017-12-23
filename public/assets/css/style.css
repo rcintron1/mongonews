@@ -1,7 +1,11 @@
 .jumbotron{
-    padding-top:0px;
+
     margin-bottom:50px;
     padding-bottom:0px;
+    background-color: rgb(187, 177, 110);
+}
+.navbar{
+    background-color: rgb(197, 189, 137);
 }
 body { background-color: #F2F6D0 }
       #wrapper {
