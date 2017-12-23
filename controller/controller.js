@@ -2,7 +2,8 @@ var mongoose = require("mongoose");
 var scraper = require("./scraper");
 
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/mongonews', {
+var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongonews'
+mongoose.connect(MONGODB_URI, {
     useMongoClient: true
 });
 
