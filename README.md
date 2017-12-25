@@ -30,3 +30,4 @@
 <li>when article is selected push a modal for appending notes</li>
 <li>when notes are added, show that the article has a node</li>
 </ol>
+

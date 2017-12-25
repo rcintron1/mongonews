@@ -10,35 +10,86 @@ mongoose.connect(MONGODB_URI, {
 var db = require("../models");
 
 var controller = {
-    refreshdata: () => {
+    refreshdata: (callback) => {
+        db.Articles.remove({}, function (err) {
+            if (err) return handleError(err);
+        });
+        db.Note.remove({}, function (err) {
+            if (err) return handleError(err);
+        });
         scraper.scrape((articles) => {
             // console.log(data);
             articles.map((article) => {
-                console.log("**", article)
+                // console.log("**", article)
                 db.Articles
                     .create(article)
                     .then((dbArticle) => {
                         // console.log(dbArticle);
-                        return ("Scrape Complete");
                     })
                     .catch((err) => {
                         // return(err);
                     })
-
-            });
-
+            })
+            callback("Scrape Complete");
         });
     },
-    getdata:(callback)=>{
+    getArticles: (id, callback) => {
+        var query = {};
+        id?query._id = id:null;
+        console.log(query);
         db.Articles
-        .find({})
-        .then(function(dbArticle){
-            callback(dbArticle);
+            .find(query)
+            .then(function (dbArticle) {
+                callback(dbArticle);
+            })
+            .catch(function (err) {
+                callback({
+                    err: err
+                });
+            });
+    },
+    delArticle: (id, callback) => {
+        db.Articles
+            .remove({_id:id})
+            .then(function (dbArticle) {
+                callback(dbArticle);
+            })
+            .catch(function (err) {
+                callback({
+                    err: err
+                });
+            });
+    },
+    getNotes: (id, callback) => {
+        var query = {};
+        id?query._id = id:null;
+        db.Articles
+            .find({})
+            .then(function (dbArticle) {
+                callback(dbArticle);
+            })
+            .catch(function (err) {
+                callback({
+                    err: err
+                });
+            });
+    },
+    addNote: (id,values,callback)=>{
+        console.log(id,values);
+        db.Note.create(values)
+        .then(function(dbnote){
+            console.log(id,dbnote._id)
+            db.Articles.findByIdAndUpdate(id, { $push: {note: dbnote._id} }, { new: true })
+            .then((data)=>{
+                callback(data);
+            })
+            .catch((err)=>{
+                throw err;
+            })
         })
-        .catch(function(err){
-            callback({err:err});
-        });
+        .catch(function (err){
+            throw err;
+        })
     }
-    
 }
-module.exports=controller;
+module.exports = controller;

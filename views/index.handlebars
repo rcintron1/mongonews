@@ -2,13 +2,16 @@
 <ul>
   {{#each articles}}
   <li>
-    <h2><p>{{this.headline}}</p></h2>
-    <p><span class="label">Sumamry:</span>{{this.summary}}</p>
-    <button id="delarticle" data-planid="{{this._id}}" class="delarticle">Delete Article!</button>
+    <h2><p class="heading" data-id="{{this._id}}">{{this.headline}}</p></h2>
+    <p><span class="label" >Summary:</span>{{this.summary}}</p>
+    <button id="delArticle" data-id="{{this._id}}" class="btn btn-default">Delete Article!</button>
     </p>
   </li>
   {{/each}}
 </ul>
+</div>
+<div id="notes">
+
 </div>
 
 
