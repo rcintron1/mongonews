@@ -4,14 +4,18 @@
   <li>
     <h2><p class="heading" data-id="{{this._id}}">{{this.headline}}</p></h2>
     <p><span class="label" >Summary:</span>{{this.summary}}</p>
-    <button id="delArticle" data-id="{{this._id}}" class="btn btn-default">Delete Article!</button>
+    <p>
+    <button id=i"delArtcle" data-id="{{this._id}}" class="btn btn-default">Delete Article!</button>
+    {{#with note}}
+      <span class="glyphicon glyphicon glyphicon-file" aria-hidden="true"></span>
+    {{/with}}
     </p>
   </li>
   {{/each}}
 </ul>
 </div>
 <div id="notes">
-
 </div>
 
 
+{{!-- <span class="glyphicon glyphicon glyphicon-file" aria-hidden="true"></span> --}}

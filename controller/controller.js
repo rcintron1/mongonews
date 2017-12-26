@@ -61,12 +61,16 @@ var controller = {
             });
     },
     getNotes: (id, callback) => {
-        var query = {};
-        id?query._id = id:null;
+        // console.log("getNotes=>", id);
         db.Articles
-            .find({})
+            .find(id)
             .then(function (dbArticle) {
-                callback(dbArticle);
+                var notes = dbArticle[0].note;
+                // console.log("from getNotes",notes)
+                db.Note.find({_id: {$in: notes}})
+                .then((data)=>{
+                    callback(data);
+                })
             })
             .catch(function (err) {
                 callback({
@@ -81,7 +85,7 @@ var controller = {
             console.log(id,dbnote._id)
             db.Articles.findByIdAndUpdate(id, { $push: {note: dbnote._id} }, { new: true })
             .then((data)=>{
-                callback(data);
+                callback(dbnote);
             })
             .catch((err)=>{
                 throw err;

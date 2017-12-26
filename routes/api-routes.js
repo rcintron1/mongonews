@@ -25,8 +25,12 @@ module.exports = function (app) {
             res.send(/*some json data*/);
         });
     });
-    app.get("/api/note/:id", function (req, res){
-        // controller.getNotes
+    app.get("/api/note/", function (req, res){
+        controller.getNotes(req.query,(data)=>{
+            console.log(data);
+            res.send(data)
+            
+        })
     });
     app.post("/api/note/:id", function(req, res){
         controller.addNote(req.params.id,req.body,(data)=>{
