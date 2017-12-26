@@ -1,11 +1,13 @@
 <div id="articles">
-<ul>
+<ul id="liArticles">
   {{#each articles}}
   <li>
     <h2><p class="heading" data-id="{{this._id}}">{{this.headline}}</p></h2>
     <p><span class="label" >Summary:</span>{{this.summary}}</p>
     <p>
-    <button id=i"delArtcle" data-id="{{this._id}}" class="btn btn-default">Delete Article!</button>
+    <button id="delArticle" data-id="{{this._id}}" class="btn btn-default">Delete Article!</button>
+    <a href='{{this.link}}' target="_blank">Open Article</a>
+    {{!-- <a href="https://www.thesitewizard.com/" target="_blank">thesitewizard.com</a> --}}
     {{#with note}}
       <span class="glyphicon glyphicon glyphicon-file" aria-hidden="true"></span>
     {{/with}}
