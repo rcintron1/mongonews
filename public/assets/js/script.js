@@ -1,7 +1,7 @@
 $(document).ready(function () {
     event.preventDefault();
     $(window).resize(function () {
-        var bodyheight = $(this).height() - 300;;
+        var bodyheight = $(this).height() - 200;;
         $("#articles").height(bodyheight);
     }).resize();
     $("body").on("click", "button", function () {
