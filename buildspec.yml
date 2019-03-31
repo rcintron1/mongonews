@@ -1,0 +1,27 @@
+version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+phases:
+  install:
+    commands:
+      # - curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator
+      # - chmod +x ./aws-iam-authenticator
+      # - mkdir $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH
+      # - curl -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/kubectl
+      # - chmod +x ./kubectl
+      # - mv kubectl /usr/local/bin/
+      - echo "Installing terrafrom ..."
+      - wget https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
+      - unzip terraform_0.11.13_linux_amd64.zip
+      - mv terraform /usr/local/bin/
+      - terraform --version
+  build:
+    commands:
+      - terraform init -backend-config "bucket=${AWS_BUCKET}" -backend-config "key=state" -backend-config "region=${AWS_REGION}"
+      - terraform apply -auto-approve -var-file="terraform-${environment}.tfvars"
